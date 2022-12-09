@@ -61,7 +61,6 @@ dependencies {
 
     //DI - Koin
     implementation "io.insert-koin:koin-android:$koin_version"//3.3.0
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     //Kotlin
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
