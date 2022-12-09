@@ -24,7 +24,7 @@ class MainScreenFragment : Fragment() {
     }
 
     private fun initClickListeners() {
-        binding.btnDetailScreen.setOnClickListener {
+        binding.btnGetFact.setOnClickListener {
             val action =
                 MainScreenFragmentDirections.actionMainScreenFragmentToDetailScreenFragment()
             findNavController().navigate(action)
