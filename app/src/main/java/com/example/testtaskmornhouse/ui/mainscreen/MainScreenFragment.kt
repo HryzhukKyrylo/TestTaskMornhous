@@ -4,30 +4,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.testtaskmornhouse.databinding.FragmentMainScreenBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainScreenFragment : Fragment() {
     private lateinit var binding: FragmentMainScreenBinding
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentMainScreenBinding.inflate(inflater, container, false)
 
         initClickListeners()
-        //todo
+        initObserver()
         return binding.root
+    }
+
+    private fun initObserver() {
+        viewModel.infoOfNumber.observe(viewLifecycleOwner) {
+            it?.let { data ->
+                Toast.makeText(requireContext(), data.text, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun initClickListeners() {
         binding.btnGetFact.setOnClickListener {
-            val action =
-                MainScreenFragmentDirections.actionMainScreenFragmentToDetailScreenFragment()
-            findNavController().navigate(action)
+            val data = binding.etInputNumber.text.toString()
+
+            viewModel.requireNumberInfo(data)
+//            val action =
+//                MainScreenFragmentDirections.actionMainScreenFragmentToDetailScreenFragment()
+//            findNavController().navigate(action)
+        }
+
+        binding.btnRandomNumber.setOnClickListener {
+            //todo implement
         }
     }
 

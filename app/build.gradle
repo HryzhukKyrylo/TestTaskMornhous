@@ -5,6 +5,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
 }
+def URL = "\"http://numbersapi.com/\""
+def STRING = "String"
+def BASE_URL = "BASE_URL"
 
 android {
     namespace 'com.example.testtaskmornhouse'
@@ -16,6 +19,8 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        buildConfigField STRING, BASE_URL, URL
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
