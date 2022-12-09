@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -30,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,4 +47,32 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version")
+
+    //Room
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    //DI - Koin
+    implementation "io.insert-koin:koin-android:$koin_version"//3.3.0
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    //Kotlin
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.8.0"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
 }
