@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskmornhouse.databinding.FragmentMainScreenBinding
 import com.example.testtaskmornhouse.domain.model.NumberModel
 import com.example.testtaskmornhouse.ui.mainscreen.adapter.MainAdapter
+import com.example.testtaskmornhouse.ui.mainscreen.adapter.MainItemDecoration
+import com.example.testtaskmornhouse.utils.dp
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainScreenFragment : Fragment() {
@@ -43,6 +45,12 @@ class MainScreenFragment : Fragment() {
     private fun initRecycler() {
         recycler = binding.rvHistoryList
         recycler.adapter = adapter
+        recycler.addItemDecoration(
+            MainItemDecoration(
+                verticalSpace = (8.dp).toInt(),
+                horizontalSpace = (8.dp).toInt()
+            )
+        )
     }
 
     private fun initObserver() {
