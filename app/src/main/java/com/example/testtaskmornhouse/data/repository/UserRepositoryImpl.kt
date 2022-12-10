@@ -18,4 +18,9 @@ class UserRepositoryImpl(
     override suspend fun saveNumber(data: NumberModel) {
         localStorage.saveNumber(data.toEntity())
     }
+
+    override suspend fun getListHistory(): List<NumberModel> {
+        val res = localStorage.getListHistory()
+        return res.map { it.toEntity() }
+    }
 }

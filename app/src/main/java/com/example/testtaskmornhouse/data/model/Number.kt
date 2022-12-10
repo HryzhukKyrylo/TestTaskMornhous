@@ -8,7 +8,7 @@ import com.example.testtaskmornhouse.domain.model.NumberModel
 data class Number(
     @PrimaryKey(autoGenerate = true)
     val id: Long? = null,
-    val number: Int,
+    val number: String,
     val text: String,
 )
 

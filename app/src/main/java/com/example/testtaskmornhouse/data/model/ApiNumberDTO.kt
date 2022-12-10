@@ -11,7 +11,7 @@ data class ApiNumberDTO(
 
 fun ApiNumberDTO.toModel(): NumberModel {
     return NumberModel(
-        number = this.number,
+        number = this.number.toString(),
         text = this.text,
     )
 }

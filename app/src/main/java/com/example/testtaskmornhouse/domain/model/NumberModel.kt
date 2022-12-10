@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class NumberModel(
-    val number: Int,
+    val number: String,
     val text: String,
 ) : Parcelable

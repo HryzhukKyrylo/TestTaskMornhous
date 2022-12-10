@@ -9,7 +9,8 @@ val appModule = module {
     viewModel {
         MainViewModel(
             getNumberInfoUseCase = get(),
-            saveNumberInfoUseCase = get()
+            saveNumberInfoUseCase = get(),
+            getListHistoryUseCase = get(),
         )
     }
 }

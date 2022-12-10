@@ -8,4 +8,8 @@ class LocalStorageImpl(
     override fun saveNumber(data: Number) {
         database.numberDao().saveNumber(data)
     }
+
+    override fun getListHistory(): List<Number> {
+        return database.numberDao().getAll()
+    }
 }

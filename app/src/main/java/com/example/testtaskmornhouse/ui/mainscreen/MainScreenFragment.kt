@@ -6,12 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskmornhouse.databinding.FragmentMainScreenBinding
+import com.example.testtaskmornhouse.domain.model.NumberModel
+import com.example.testtaskmornhouse.ui.mainscreen.adapter.MainAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainScreenFragment : Fragment() {
     private lateinit var binding: FragmentMainScreenBinding
     private val viewModel by viewModel<MainViewModel>()
+    private lateinit var recycler: RecyclerView
+    private val adapter: MainAdapter = MainAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,8 +25,23 @@ class MainScreenFragment : Fragment() {
         binding = FragmentMainScreenBinding.inflate(inflater, container, false)
 
         initClickListeners()
+        initRecycler()
         initObserver()
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getListHistory()
+    }
+
+    private fun getListHistory() {
+        viewModel.getListHistory()
+    }
+
+    private fun initRecycler() {
+        recycler = binding.rvHistoryList
+        recycler.adapter = adapter
     }
 
     private fun initObserver() {
@@ -31,6 +51,18 @@ class MainScreenFragment : Fragment() {
                     MainScreenFragmentDirections.actionMainScreenFragmentToDetailScreenFragment(data)
                 findNavController().navigate(action)
             }
+        }
+
+        viewModel.listHistory.observe(viewLifecycleOwner) { list ->
+            showListHistory(list)
+        }
+    }
+
+    private fun showListHistory(list: List<NumberModel>?) {
+        if (list.isNullOrEmpty()) {
+            //todo show no data
+        } else {
+            adapter.submitList(list)
         }
     }
 
