@@ -9,14 +9,27 @@
         android:id="@+id/mainScreenFragment"
         android:name="com.example.testtaskmornhouse.ui.mainscreen.MainScreenFragment"
         android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" >
+        tools:layout="@layout/fragment_main_screen">
         <action
             android:id="@+id/action_mainScreenFragment_to_detailScreenFragment"
-            app:destination="@id/detailScreenFragment" />
+            app:destination="@id/detailScreenFragment"
+            app:popUpTo="@id/mainScreenFragment"
+            app:popUpToInclusive="false">
+            <argument
+                android:name="numberModel"
+                app:argType="com.example.testtaskmornhouse.domain.model.NumberModel"
+                app:nullable="true" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/detailScreenFragment"
         android:name="com.example.testtaskmornhouse.ui.detailscreen.DetailScreenFragment"
         android:label="fragment_detail_screen"
-        tools:layout="@layout/fragment_detail_screen" />
+        tools:layout="@layout/fragment_detail_screen">
+        <argument
+            android:name="numberModel"
+            android:defaultValue="@null"
+            app:argType="com.example.testtaskmornhouse.domain.model.NumberModel"
+            app:nullable="true" />
+    </fragment>
 </navigation>

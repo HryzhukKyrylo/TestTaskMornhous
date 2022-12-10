@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.testtaskmornhouse.domain.model.NumberModel
 import com.example.testtaskmornhouse.domain.usecases.GetNumberInfoUseCase
 import com.example.testtaskmornhouse.domain.usecases.SaveNumberInfoUseCase
+import com.example.testtaskmornhouse.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -14,7 +15,7 @@ class MainViewModel(
     private val getNumberInfoUseCase: GetNumberInfoUseCase,
     private val saveNumberInfoUseCase: SaveNumberInfoUseCase,
 ) : ViewModel() {
-    private val _infoOfNumber: MutableLiveData<NumberModel?> = MutableLiveData(null)
+    private val _infoOfNumber: MutableLiveData<NumberModel?> = SingleLiveEvent()
     val infoOfNumber: LiveData<NumberModel?> = _infoOfNumber
 
     fun requireNumberInfo(data: String) {

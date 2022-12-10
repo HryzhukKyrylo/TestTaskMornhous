@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
+    id("kotlin-parcelize")
 }
 def URL = "\"http://numbersapi.com/\""
 def STRING = "String"
