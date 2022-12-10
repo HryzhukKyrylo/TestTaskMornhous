@@ -6,4 +6,5 @@ interface UserRepository {
     suspend fun getNumberInfo(data: String): NumberModel?
     suspend fun saveNumber(data: NumberModel)
     suspend fun getListHistory(): List<NumberModel>
+    suspend fun getRandomNumberInfo(): NumberModel?
 }

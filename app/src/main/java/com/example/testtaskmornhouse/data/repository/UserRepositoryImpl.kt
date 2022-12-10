@@ -23,4 +23,9 @@ class UserRepositoryImpl(
         val res = localStorage.getListHistory()
         return res.map { it.toEntity() }
     }
+
+    override suspend fun getRandomNumberInfo(): NumberModel? {
+        val resVal = remoteRepository.getRandomNumberInfo()
+        return resVal
+    }
 }

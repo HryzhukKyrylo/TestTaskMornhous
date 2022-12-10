@@ -85,7 +85,7 @@ class MainScreenFragment : Fragment() {
         }
 
         binding.btnRandomNumber.setOnClickListener {
-            //todo implement
+            viewModel.requireRandomNumber()
         }
     }
 

@@ -7,4 +7,7 @@ import retrofit2.http.Path
 interface ApiService {
     @GET("{number}?json")
     suspend fun getNumberInfo(@Path(value = "number") data: String): ApiNumberDTO
+
+    @GET("random/math?json")
+    suspend fun getRandomNumberInfo(): ApiNumberDTO
 }

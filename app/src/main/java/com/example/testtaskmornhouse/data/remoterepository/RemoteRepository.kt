@@ -8,6 +8,7 @@ import com.google.gson.stream.MalformedJsonException
 
 interface RemoteRepository {
     suspend fun getNumberInfo(data: String): NumberModel?
+    suspend fun getRandomNumberInfo(): NumberModel?
 }
 
 class RemoteRepositoryImpl(
@@ -16,6 +17,19 @@ class RemoteRepositoryImpl(
     override suspend fun getNumberInfo(data: String): NumberModel? {
         val response = try {
             apiService.getNumberInfo(data)
+        } catch (ex: MalformedJsonException) {
+            ex.printStackTrace()
+            null
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            null
+        }
+        return response?.toModel()
+    }
+
+    override suspend fun getRandomNumberInfo(): NumberModel? {
+        val response = try {
+            apiService.getRandomNumberInfo()
         } catch (ex: MalformedJsonException) {
             ex.printStackTrace()
             null

@@ -11,6 +11,7 @@ val appModule = module {
             getNumberInfoUseCase = get(),
             saveNumberInfoUseCase = get(),
             getListHistoryUseCase = get(),
+            getRandomNumberInfoUseCase = get(),
         )
     }
 }
