@@ -7,6 +7,9 @@ import org.koin.dsl.module
 
 val appModule = module {
     viewModel {
-        MainViewModel(getNumberInfoUseCase = get())
+        MainViewModel(
+            getNumberInfoUseCase = get(),
+            saveNumberInfoUseCase = get()
+        )
     }
 }
