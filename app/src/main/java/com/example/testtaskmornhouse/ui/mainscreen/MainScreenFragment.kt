@@ -8,11 +8,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testtaskmornhouse.R
 import com.example.testtaskmornhouse.databinding.FragmentMainScreenBinding
 import com.example.testtaskmornhouse.domain.model.NumberModel
 import com.example.testtaskmornhouse.ui.mainscreen.adapter.MainAdapter
 import com.example.testtaskmornhouse.ui.mainscreen.adapter.MainItemDecoration
 import com.example.testtaskmornhouse.utils.dp
+import com.example.testtaskmornhouse.utils.isNetworkAvailable
+import com.example.testtaskmornhouse.utils.toastShort
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainScreenFragment : Fragment() {
@@ -65,6 +68,15 @@ class MainScreenFragment : Fragment() {
         viewModel.listHistory.observe(viewLifecycleOwner) { list ->
             showListHistory(list)
         }
+
+        viewModel.emptyNumberMessage.observe(viewLifecycleOwner) {
+            showEmptyNumberErrorMessage()
+        }
+    }
+
+    private fun showEmptyNumberErrorMessage() {
+        binding.etInputNumber.error = getString(R.string.main_screen_error_message)
+        requireContext().toastShort(getString(R.string.main_screen_number_is_empty))
     }
 
     private fun showListHistory(list: List<NumberModel>?) {
@@ -88,12 +100,20 @@ class MainScreenFragment : Fragment() {
 
     private fun initClickListeners() {
         binding.btnGetFact.setOnClickListener {
-            val data = binding.etInputNumber.text.toString()
-            viewModel.requireNumberInfo(data)
+            if (requireContext().isNetworkAvailable()) {
+                val data = binding.etInputNumber.text.toString()
+                viewModel.requireNumberInfo(data)
+            } else {
+                requireContext().toastShort(getString(R.string.main_screen_no_internet_connection))
+            }
         }
 
         binding.btnRandomNumber.setOnClickListener {
-            viewModel.requireRandomNumber()
+            if (requireContext().isNetworkAvailable()) {
+                viewModel.requireRandomNumber()
+            } else {
+                requireContext().toastShort(getString(R.string.main_screen_no_internet_connection))
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.testtaskmornhouse.R
 import com.example.testtaskmornhouse.databinding.FragmentDetailScreenBinding
 import com.example.testtaskmornhouse.domain.model.NumberModel
+import com.example.testtaskmornhouse.utils.toastShort
 
 class DetailScreenFragment : Fragment() {
     private lateinit var binding: FragmentDetailScreenBinding
@@ -25,11 +26,7 @@ class DetailScreenFragment : Fragment() {
         if (args.numberModel != null) {
             showData(args.numberModel!!)
         } else {
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.detail_screen_incorrect_data),
-                Toast.LENGTH_SHORT
-            ).show()
+            requireContext().toastShort(getString(R.string.detail_screen_incorrect_data))
             findNavController().navigateUp()
         }
         return binding.root

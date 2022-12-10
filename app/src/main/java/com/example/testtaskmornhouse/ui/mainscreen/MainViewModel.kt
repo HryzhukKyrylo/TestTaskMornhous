@@ -26,11 +26,26 @@ class MainViewModel(
         MutableLiveData<List<NumberModel>>(emptyList())
     val listHistory: LiveData<List<NumberModel>> = _listHistory
 
+    private val _emptyNumberMessage: MutableLiveData<Boolean> = SingleLiveEvent()
+    val emptyNumberMessage: LiveData<Boolean> = _emptyNumberMessage
 
     fun requireNumberInfo(data: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val resVal = getNumberInfoUseCase.execute(data = data)
-            setData(resVal)
+            val isNotEmptyNumber = checkNotEmptyNumber(data)
+            if (isNotEmptyNumber) {
+                val resVal = getNumberInfoUseCase.execute(data = data)
+                setData(resVal)
+            } else {
+                _emptyNumberMessage.postValue(true)
+            }
+        }
+    }
+
+    private fun checkNotEmptyNumber(data: String): Boolean {
+        return if (data.trim().isNotEmpty()) {
+            true
+        } else {
+            false
         }
     }
 
