@@ -88,5 +88,4 @@ class MainScreenFragment : Fragment() {
             viewModel.requireRandomNumber()
         }
     }
-
 }

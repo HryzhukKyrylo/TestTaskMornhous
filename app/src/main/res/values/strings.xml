@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">TestTaskMornhouse</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    main screen -->
     <string name="main_screen_get_fact">Get fact</string>
     <string name="main_screen_write_your_number">Write your number</string>
     <string name="main_screen_get_fact_random_number">Get fact about random number</string>
+
+    <!--    detail screen-->
     <string name="detail_screen_incorrect_data">Sorry - incorrect data!</string>
 </resources>

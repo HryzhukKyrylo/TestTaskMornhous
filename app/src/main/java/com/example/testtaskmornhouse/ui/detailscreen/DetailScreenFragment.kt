@@ -20,7 +20,6 @@ class DetailScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentDetailScreenBinding.inflate(inflater, container, false)
 
         if (args.numberModel != null) {
@@ -37,7 +36,7 @@ class DetailScreenFragment : Fragment() {
     }
 
     private fun showData(numberModel: NumberModel) {
-        binding.tvNumber.text = numberModel.number.toString()
+        binding.tvNumber.text = numberModel.number
         binding.tvInfoNumber.text = numberModel.text
     }
 

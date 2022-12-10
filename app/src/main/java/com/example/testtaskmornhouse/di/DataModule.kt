@@ -7,8 +7,8 @@ import com.example.testtaskmornhouse.data.apirepository.ApiService
 import com.example.testtaskmornhouse.data.localstorage.LocalStorage
 import com.example.testtaskmornhouse.data.localstorage.LocalStorageImpl
 import com.example.testtaskmornhouse.data.localstorage.NumberDatabase
-import com.example.testtaskmornhouse.data.remoterepository.RemoteRepository
-import com.example.testtaskmornhouse.data.remoterepository.RemoteRepositoryImpl
+import com.example.testtaskmornhouse.data.remotestorage.RemoteStorage
+import com.example.testtaskmornhouse.data.remotestorage.RemoteStorageImpl
 import com.example.testtaskmornhouse.data.repository.UserRepositoryImpl
 import com.example.testtaskmornhouse.domain.repository.UserRepository
 import okhttp3.OkHttpClient
@@ -39,15 +39,15 @@ val dataModule = module {
         retrofit.create(ApiService::class.java)
     }
 
-    single<RemoteRepository> {
-        RemoteRepositoryImpl(
+    single<RemoteStorage> {
+        RemoteStorageImpl(
             apiService = get<ApiService>()
         )
     }
 
     single<UserRepository> {
         UserRepositoryImpl(
-            remoteRepository = get<RemoteRepository>(),
+            remoteStorage = get<RemoteStorage>(),
             localStorage = get<LocalStorage>()
         )
     }
